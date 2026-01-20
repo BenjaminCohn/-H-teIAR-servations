@@ -72,7 +72,7 @@ export default function ChatWidget({ tenantId = "demo" }: { tenantId?: string })
 
       {/* fenêtre chat */}
       {open && (
-        <div className="w-[360px] max-w-[90vw] rounded-2xl border bg-white shadow-2xl overflow-hidden">
+        <div className="w-90 max-w-[90vw] rounded-2xl border bg-white shadow-2xl overflow-hidden">
           <div className="flex items-center justify-between px-4 py-3 border-b">
             <div className="font-semibold">Hôte Restaurant</div>
             <button
@@ -83,7 +83,7 @@ export default function ChatWidget({ tenantId = "demo" }: { tenantId?: string })
             </button>
           </div>
 
-          <div className="h-[380px] overflow-auto px-4 py-3 space-y-2">
+          <div className="h-95 overflow-auto px-4 py-3 space-y-2">
             {log.map((m, i) => (
               <div key={i} className={m.role === "user" ? "text-right" : ""}>
                 <span
