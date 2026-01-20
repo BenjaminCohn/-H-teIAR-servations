@@ -1,3 +1,5 @@
+import ChatWidget from "@/components/ChatWidget";
+
 const AGENT_URL =
   "https://app.relevanceai.com/agents/d7b62b/a3b5a990-0128-454e-994b-ffe5083772a2/ba5337db-a9dc-4550-9ea3-e4296fb7d479/embed-chat?hide_tool_steps=true&hide_file_uploads=true&hide_conversation_list=true&bubble_style=agent&primary_color=%23685FFF&bubble_icon=pd/chat&input_placeholder_text=Ecrivez%20votre%20demande...&hide_logo=true&hide_description=true&conversationId=new";
 
