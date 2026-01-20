@@ -1,7 +1,7 @@
-import ChatWidget from "@/components/ChatWidget";
+// src/app/page.tsx
 
 const AGENT_URL =
-  "https://app.relevanceai.com/agents/d7b62b/a3b5a990-0128-454e-994b-ffe5083772a2/ba5337db-a9dc-4550-9ea3-e4296fb7d479/embed-chat?hide_tool_steps=true&hide_file_uploads=true&hide_conversation_list=true&bubble_style=agent&primary_color=%23685FFF&bubble_icon=pd/chat&input_placeholder_text=Ecrivez%20votre%20demande...&hide_logo=true&hide_description=true&conversationId=new";
+  "https://app.relevanceai.com/agents/d7b62b/a3b5a990-0128-454e-994b-ffe5083772a2/ba5337db-a9dc-4550-9ea3-e4296fb7d479/embed-chat?hide_tool_steps=true&hide_file_uploads=true&hide_logo=true&hide_description=true&primary_color=%23685fff";
 
 export default function Page() {
   return (
@@ -17,7 +17,7 @@ export default function Page() {
       <header className="sticky top-0 z-50 border-b border-white/10 bg-slate-950/60 backdrop-blur">
         <div className="mx-auto flex w-[min(1120px,92vw)] items-center justify-between py-3">
           <div className="flex items-center gap-3">
-            <div className="grid h-9 w-9 place-items-center rounded-xl bg-gradient-to-br from-violet-500 to-emerald-400 font-black">
+            <div className="grid h-9 w-9 place-items-center rounded-xl bg-gradient-to-br from-violet-500 to-emerald-400 font-black text-slate-950">
               IA
             </div>
             <div className="leading-tight">
@@ -45,9 +45,10 @@ export default function Page() {
         </div>
       </header>
 
-      {/* hero */}
+      {/* hero + demo */}
       <section className="mx-auto w-[min(1120px,92vw)] py-10">
-        <div className="grid gap-5 lg:grid-cols-[1.15fr_.85fr]">
+        <div className="grid gap-6 lg:grid-cols-[1.15fr_.85fr]">
+          {/* hero card */}
           <div className="rounded-2xl border border-white/10 bg-white/5 p-6 shadow-[0_20px_60px_rgba(0,0,0,.55)]">
             <h1 className="text-3xl font-black tracking-tight sm:text-5xl sm:leading-[1.05]">
               Un agent IA qui prend vos réservations 24/7 et les note dans votre planning.
@@ -81,7 +82,11 @@ export default function Page() {
             </div>
           </div>
 
-          <div id="demo" className="rounded-2xl border border-white/10 bg-white/5 p-4 shadow-[0_20px_60px_rgba(0,0,0,.55)]">
+          {/* demo card */}
+          <div
+            id="demo"
+            className="rounded-2xl border border-white/10 bg-white/5 p-4 shadow-[0_20px_60px_rgba(0,0,0,.55)]"
+          >
             <div className="mb-3 flex items-center justify-between gap-3">
               <div>
                 <div className="text-xs font-extrabold uppercase tracking-wider text-slate-300">Démo intégrée</div>
@@ -97,13 +102,16 @@ export default function Page() {
               </a>
             </div>
 
-            <div className="h-[560px] overflow-hidden rounded-xl border border-white/10 bg-black/20">
+            {/* IMPORTANT: fond blanc derrière l'iframe pour lisibilité */}
+            <div className="h-[560px] overflow-hidden rounded-xl border border-black/10 bg-white shadow-[0_20px_60px_rgba(0,0,0,.25)]">
               <iframe
                 src={AGENT_URL}
                 title="Démo agent IA RelevanceAI"
+                className="h-full w-full border-0 bg-white"
+                style={{ backgroundColor: "#fff" }}
                 referrerPolicy="no-referrer"
+                allow="microphone; clipboard-write"
                 sandbox="allow-scripts allow-forms allow-same-origin allow-popups"
-                className="h-full w-full border-0"
               />
             </div>
 
@@ -150,9 +158,7 @@ export default function Page() {
               Pack Installation
             </span>
             <div className="mt-3 text-4xl font-black tracking-tight">2 000€</div>
-            <p className="mt-2 text-sm text-slate-300">
-              Configuration + mise en place + tests + formation.
-            </p>
+            <p className="mt-2 text-sm text-slate-300">Configuration + mise en place + tests + formation.</p>
             <ul className="mt-4 space-y-2 text-sm text-slate-300">
               <li>• Agent configuré (scripts + règles + ton)</li>
               <li>• Connexion Google Sheets</li>
@@ -175,9 +181,7 @@ export default function Page() {
               Ce qui manque (à ajouter)
             </span>
             <div className="mt-3 text-2xl font-black tracking-tight">Options premium</div>
-            <p className="mt-2 text-sm text-slate-300">
-              Pour rendre le produit “premium” et éviter les erreurs.
-            </p>
+            <p className="mt-2 text-sm text-slate-300">Pour rendre le produit “premium” et éviter les erreurs.</p>
             <ul className="mt-4 space-y-2 text-sm text-slate-300">
               <li>• Vérifier la dispo avant d’écrire (lecture du planning)</li>
               <li>• Annulation + modification automatiques</li>
@@ -199,9 +203,15 @@ export default function Page() {
         <div className="mx-auto flex w-[min(1120px,92vw)] flex-wrap items-center justify-between gap-3 text-sm text-slate-300">
           <div>© {new Date().getFullYear()} — Hôte IA Réservations</div>
           <div className="flex gap-4 font-semibold">
-            <a href="#demo" className="hover:text-white">Démo</a>
-            <a href="#prix" className="hover:text-white">Prix</a>
-            <a href="#fonctionnalites" className="hover:text-white">Fonctionnalités</a>
+            <a href="#demo" className="hover:text-white">
+              Démo
+            </a>
+            <a href="#prix" className="hover:text-white">
+              Prix
+            </a>
+            <a href="#fonctionnalites" className="hover:text-white">
+              Fonctionnalités
+            </a>
           </div>
         </div>
       </footer>

@@ -31,7 +31,7 @@ export default function ChatWidget({ tenantId = "demo" }: { tenantId?: string })
     setLoading(true);
 
     try {
-      const res = await fetch("/api/chat", {
+      const res = await fetch("/chat", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ tenantId, message: text, conversationId }),
@@ -49,10 +49,7 @@ export default function ChatWidget({ tenantId = "demo" }: { tenantId?: string })
 
       setConversationId(data.conversationId ?? conversationId);
 
-      setLog((l) => [
-        ...l,
-        { role: "assistant", text: data.reply ?? "OK" },
-      ]);
+      setLog((l) => [...l, { role: "assistant", text: data.reply ?? "OK" }]);
     } finally {
       setLoading(false);
     }
@@ -64,7 +61,7 @@ export default function ChatWidget({ tenantId = "demo" }: { tenantId?: string })
       {!open && (
         <button
           onClick={() => setOpen(true)}
-          className="rounded-full bg-black text-white px-4 py-3 shadow-lg"
+          className="rounded-full bg-violet-600 text-white px-4 py-3 shadow-lg hover:bg-violet-500"
         >
           Réserver une table
         </button>
@@ -72,12 +69,12 @@ export default function ChatWidget({ tenantId = "demo" }: { tenantId?: string })
 
       {/* fenêtre chat */}
       {open && (
-        <div className="w-90 max-w-[90vw] rounded-2xl border bg-white shadow-2xl overflow-hidden">
-          <div className="flex items-center justify-between px-4 py-3 border-b">
+        <div className="w-90 max-w-[90vw] rounded-2xl border border-white/10 bg-slate-900 text-slate-100 shadow-2xl overflow-hidden">
+          <div className="flex items-center justify-between px-4 py-3 border-b border-white/10 bg-slate-900/80">
             <div className="font-semibold">Hôte Restaurant</div>
             <button
               onClick={() => setOpen(false)}
-              className="text-sm text-gray-500 hover:text-black"
+              className="text-sm text-slate-300 hover:text-white"
             >
               Fermer
             </button>
@@ -90,38 +87,40 @@ export default function ChatWidget({ tenantId = "demo" }: { tenantId?: string })
                   className={
                     "inline-block max-w-[85%] rounded-2xl px-3 py-2 text-sm " +
                     (m.role === "user"
-                      ? "bg-black text-white"
-                      : "bg-gray-100 text-gray-900")
+                      ? "bg-violet-600 text-white"
+                      : "bg-slate-800 text-slate-100")
                   }
                 >
                   {m.text}
                 </span>
               </div>
             ))}
+
             {loading && (
               <div>
-                <span className="inline-block rounded-2xl px-3 py-2 text-sm bg-gray-100">
+                <span className="inline-block rounded-2xl px-3 py-2 text-sm bg-slate-800 text-slate-100">
                   ...
                 </span>
               </div>
             )}
+
             <div ref={bottomRef} />
           </div>
 
-          <div className="border-t p-3 flex gap-2">
+          <div className="border-t border-white/10 p-3 flex gap-2 bg-slate-900/60">
             <input
               value={msg}
               onChange={(e) => setMsg(e.target.value)}
               onKeyDown={(e) => {
                 if (e.key === "Enter") send();
               }}
-              className="flex-1 rounded-xl border px-3 py-2 text-sm outline-none"
+              className="flex-1 rounded-xl bg-slate-800 text-slate-100 placeholder:text-slate-400 border border-white/10 px-3 py-2 text-sm outline-none focus:border-white/20"
               placeholder="Ex: demain 19h30 pour 4, Dupont, 0662626262"
             />
             <button
               onClick={send}
               disabled={loading}
-              className="rounded-xl bg-black text-white px-4 py-2 text-sm disabled:opacity-50"
+              className="rounded-xl bg-violet-600 text-white px-4 py-2 text-sm disabled:opacity-50 hover:bg-violet-500"
             >
               Envoyer
             </button>
