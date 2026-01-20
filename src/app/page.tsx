@@ -175,26 +175,6 @@ export default function Page() {
               Tester la démo ↗
             </a>
           </div>
-
-          <div className="rounded-2xl border border-white/10 bg-white/5 p-6">
-            <span className="inline-flex rounded-full border border-white/10 bg-white/5 px-3 py-1 text-xs font-extrabold text-slate-300">
-              Ce qui manque (à ajouter)
-            </span>
-            <div className="mt-3 text-2xl font-black tracking-tight">Options premium</div>
-            <p className="mt-2 text-sm text-slate-300">Pour rendre le produit “premium” et éviter les erreurs.</p>
-            <ul className="mt-4 space-y-2 text-sm text-slate-300">
-              <li>• Vérifier la dispo avant d’écrire (lecture du planning)</li>
-              <li>• Annulation + modification automatiques</li>
-              <li>• Notifications (email / WhatsApp)</li>
-              <li>• Numéro téléphone IA (phase 2)</li>
-            </ul>
-            <a
-              href="#demo"
-              className="mt-5 inline-flex rounded-full border border-white/10 bg-white/5 px-5 py-2.5 text-sm font-extrabold hover:bg-white/10"
-            >
-              Voir la démo intégrée
-            </a>
-          </div>
         </div>
       </section>
 
