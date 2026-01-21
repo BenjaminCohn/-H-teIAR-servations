@@ -1,5 +1,5 @@
 export default function PricingPage() {
-  const payUrl = process.env.NEXT_PUBLIC_STRIPE_PAYMENT_LINK_URL;
+  const payUrl = process.env.NEXT_PUBLIC_STRIPE_PAYMENT_LINK;
 
   return (
     <main className="min-h-screen flex items-center justify-center p-8">
