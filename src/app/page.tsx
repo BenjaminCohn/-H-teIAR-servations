@@ -8,16 +8,16 @@ export default function Page() {
     <main className="min-h-screen bg-slate-950 text-slate-100">
       {/* background glow */}
       <div className="pointer-events-none fixed inset-0 -z-10">
-        <div className="absolute left-[-20%] top-[-30%] h-[520px] w-[520px] rounded-full bg-violet-500/25 blur-[120px]" />
-        <div className="absolute right-[-10%] top-[0%] h-[520px] w-[520px] rounded-full bg-emerald-400/15 blur-[120px]" />
-        <div className="absolute left-[30%] bottom-[-35%] h-[680px] w-[680px] rounded-full bg-sky-400/10 blur-[140px]" />
+        <div className="absolute left-[-20%] top-[-30%] h-130 w-130 rounded-full bg-violet-500/25 blur-[120px]" />
+        <div className="absolute right-[-10%] top-[0%] h-130 w-130 rounded-full bg-emerald-400/15 blur-[120px]" />
+        <div className="absolute left-[30%] bottom-[-35%] h-170 w-170 rounded-full bg-sky-400/10 blur-[140px]" />
       </div>
 
       {/* navbar */}
       <header className="sticky top-0 z-50 border-b border-white/10 bg-slate-950/60 backdrop-blur">
         <div className="mx-auto flex w-[min(1120px,92vw)] items-center justify-between py-3">
           <div className="flex items-center gap-3">
-            <div className="grid h-9 w-9 place-items-center rounded-xl bg-gradient-to-br from-violet-500 to-emerald-400 font-black text-slate-950">
+            <div className="grid h-9 w-9 place-items-center rounded-xl bg-linear-to-br from-violet-500 to-emerald-400 font-black text-slate-950">
               IA
             </div>
             <div className="leading-tight">
@@ -37,7 +37,7 @@ export default function Page() {
               href={AGENT_URL}
               target="_blank"
               rel="noreferrer"
-              className="rounded-full bg-gradient-to-r from-violet-500 to-emerald-400 px-4 py-2 text-sm font-extrabold text-slate-950 hover:opacity-95"
+              className="rounded-full bg-linear-to-r from-violet-500 to-emerald-400 px-4 py-2 text-sm font-extrabold text-slate-950 hover:opacity-95"
             >
               Ouvrir la démo ↗
             </a>
@@ -61,7 +61,7 @@ export default function Page() {
             <div className="mt-5 flex flex-wrap gap-2">
               <a
                 href="#demo"
-                className="rounded-full bg-gradient-to-r from-violet-500 to-emerald-400 px-5 py-2.5 text-sm font-extrabold text-slate-950 hover:opacity-95"
+                className="rounded-full bg-linear-to-r from-violet-500 to-emerald-400 px-5 py-2.5 text-sm font-extrabold text-slate-950 hover:opacity-95"
               >
                 Voir l’agent en action
               </a>
@@ -103,7 +103,7 @@ export default function Page() {
             </div>
 
             {/* IMPORTANT: fond blanc derrière l'iframe pour lisibilité */}
-            <div className="h-[560px] overflow-hidden rounded-xl border border-black/10 bg-white shadow-[0_20px_60px_rgba(0,0,0,.25)]">
+            <div className="h-140 overflow-hidden rounded-xl border border-black/10 bg-white shadow-[0_20px_60px_rgba(0,0,0,.25)]">
               <iframe
                 src={AGENT_URL}
                 title="Démo agent IA RelevanceAI"
@@ -170,7 +170,7 @@ export default function Page() {
               href={AGENT_URL}
               target="_blank"
               rel="noreferrer"
-              className="mt-5 inline-flex rounded-full bg-gradient-to-r from-violet-500 to-emerald-400 px-5 py-2.5 text-sm font-extrabold text-slate-950 hover:opacity-95"
+              className="mt-5 inline-flex rounded-full bg-linear-to-r from-violet-500 to-emerald-400 px-5 py-2.5 text-sm font-extrabold text-slate-950 hover:opacity-95"
             >
               Tester la démo ↗
             </a>
