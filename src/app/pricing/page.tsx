@@ -22,7 +22,9 @@ export default function PricingPage() {
         >
           Payer maintenant
         </a>
-
+            <p className="mt-2 text-xs text-white/60 break-all">
+                payUrl = {payUrl ?? "VIDE"}
+            </p>
         {!payUrl && (
           <p className="mt-3 text-sm text-red-300">
             Variable manquante : NEXT_PUBLIC_STRIPE_PAYMENT_LINK
