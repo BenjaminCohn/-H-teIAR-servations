@@ -133,7 +133,7 @@ export default function Page() {
             },
             {
               title: "Écriture planning",
-              desc: "Enregistre automatiquement dans Google Sheets avec un statut.",
+              desc: "Enregistre automatiquement dans Google Calendar(Agenda) avec un statut.",
             },
             {
               title: "Cas compliqués",
