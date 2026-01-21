@@ -1,7 +1,9 @@
 // src/app/page.tsx
-
 const AGENT_URL =
   "https://app.relevanceai.com/agents/d7b62b/a3b5a990-0128-454e-994b-ffe5083772a2/ba5337db-a9dc-4550-9ea3-e4296fb7d479/embed-chat?hide_tool_steps=true&hide_file_uploads=true&hide_logo=true&hide_description=true&primary_color=%23685fff";
+
+const STRIPE_PAYMENT_LINK =
+  process.env.NEXT_PUBLIC_STRIPE_PAYMENT_LINK || "#";
 
 export default function Page() {
   return (
@@ -21,8 +23,12 @@ export default function Page() {
               IA
             </div>
             <div className="leading-tight">
-              <div className="font-extrabold tracking-tight">Hôte IA Réservations</div>
-              <div className="text-xs font-semibold text-slate-300">Démo live</div>
+              <div className="font-extrabold tracking-tight">
+                Hôte IA Réservations
+              </div>
+              <div className="text-xs font-semibold text-slate-300">
+                Démo live
+              </div>
             </div>
           </div>
 
@@ -33,6 +39,16 @@ export default function Page() {
             >
               Tester
             </a>
+
+            <a
+              href={STRIPE_PAYMENT_LINK}
+              target="_blank"
+              rel="noreferrer"
+              className="rounded-full border border-white/10 bg-white/5 px-4 py-2 text-sm font-extrabold hover:bg-white/10"
+            >
+              Acheter ↗
+            </a>
+
             <a
               href={AGENT_URL}
               target="_blank"
@@ -51,11 +67,14 @@ export default function Page() {
           {/* hero card */}
           <div className="rounded-2xl border border-white/10 bg-white/5 p-6 shadow-[0_20px_60px_rgba(0,0,0,.55)]">
             <h1 className="text-3xl font-black tracking-tight sm:text-5xl sm:leading-[1.05]">
-              Un agent IA qui prend vos réservations 24/7 et les note dans votre planning.
+              Un agent IA qui prend vos réservations 24/7 et les note dans votre
+              planning.
             </h1>
             <p className="mt-4 max-w-[62ch] text-base text-slate-300">
-              Il collecte les infos (personnes, date, heure, nom, téléphone), confirme, puis enregistre automatiquement
-              dans Google Calendar/Agenda (ou un planning). Idéal pour réduire les appels et éviter les erreurs.
+              Il collecte les infos (personnes, date, heure, nom, téléphone),
+              confirme, puis enregistre automatiquement dans Google
+              Calendar/Agenda. Idéal pour réduire les appels et éviter les
+              erreurs.
             </p>
 
             <div className="mt-5 flex flex-wrap gap-2">
@@ -65,20 +84,28 @@ export default function Page() {
               >
                 Voir l’agent en action
               </a>
+
               <a
-                href="#prix"
+                href={STRIPE_PAYMENT_LINK}
+                target="_blank"
+                rel="noreferrer"
                 className="rounded-full border border-white/10 bg-white/5 px-5 py-2.5 text-sm font-extrabold hover:bg-white/10"
               >
-                Voir l’offre
+                Acheter l’installation ↗
               </a>
             </div>
 
             <div className="mt-5 flex flex-wrap gap-2 text-xs font-extrabold text-slate-300">
-              {["✅ Réservations", "✅ Planning connecté", "✅ Escalade humain", "✅ Installation rapide"].map((t) => (
-                <span key={t} className="rounded-full border border-white/10 bg-white/5 px-3 py-2">
-                  {t}
-                </span>
-              ))}
+              {["✅ Réservations", "✅ Planning connecté", "✅ Escalade humain", "✅ Installation rapide"].map(
+                (t) => (
+                  <span
+                    key={t}
+                    className="rounded-full border border-white/10 bg-white/5 px-3 py-2"
+                  >
+                    {t}
+                  </span>
+                )
+              )}
             </div>
           </div>
 
@@ -89,7 +116,9 @@ export default function Page() {
           >
             <div className="mb-3 flex items-center justify-between gap-3">
               <div>
-                <div className="text-xs font-extrabold uppercase tracking-wider text-slate-300">Démo intégrée</div>
+                <div className="text-xs font-extrabold uppercase tracking-wider text-slate-300">
+                  Démo intégrée
+                </div>
                 <div className="font-extrabold">Parlez à l’agent</div>
               </div>
               <a
@@ -102,7 +131,6 @@ export default function Page() {
               </a>
             </div>
 
-            {/* IMPORTANT: fond blanc derrière l'iframe pour lisibilité */}
             <div className="h-140 overflow-hidden rounded-xl border border-black/10 bg-white shadow-[0_20px_60px_rgba(0,0,0,.25)]">
               <iframe
                 src={AGENT_URL}
@@ -158,7 +186,10 @@ export default function Page() {
               Pack Installation
             </span>
             <div className="mt-3 text-4xl font-black tracking-tight">2 000€</div>
-            <p className="mt-2 text-sm text-slate-300">Configuration + mise en place + tests + formation.</p>
+            <p className="mt-2 text-sm text-slate-300">
+              Configuration + mise en place + tests + formation.
+            </p>
+
             <ul className="mt-4 space-y-2 text-sm text-slate-300">
               <li>• Agent configuré (scripts + règles + ton)</li>
               <li>• Connexion Google Calendar</li>
@@ -166,14 +197,26 @@ export default function Page() {
               <li>• Guide + formation 30 min</li>
               <li>• Support 30 jours</li>
             </ul>
-            <a
-              href={AGENT_URL}
-              target="_blank"
-              rel="noreferrer"
-              className="mt-5 inline-flex rounded-full bg-linear-to-r from-violet-500 to-emerald-400 px-5 py-2.5 text-sm font-extrabold text-slate-950 hover:opacity-95"
-            >
-              Tester la démo ↗
-            </a>
+
+            <div className="mt-5 flex flex-wrap gap-2">
+              <a
+                href={STRIPE_PAYMENT_LINK}
+                target="_blank"
+                rel="noreferrer"
+                className="inline-flex rounded-full bg-linear-to-r from-violet-500 to-emerald-400 px-5 py-2.5 text-sm font-extrabold text-slate-950 hover:opacity-95"
+              >
+                Acheter maintenant ↗
+              </a>
+
+              <a
+                href={AGENT_URL}
+                target="_blank"
+                rel="noreferrer"
+                className="inline-flex rounded-full border border-white/10 bg-white/5 px-5 py-2.5 text-sm font-extrabold hover:bg-white/10"
+              >
+                Tester la démo ↗
+              </a>
+            </div>
           </div>
         </div>
       </section>
