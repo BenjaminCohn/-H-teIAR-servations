@@ -12,15 +12,20 @@ export default function PricingPage() {
         <div className="mt-6 text-2xl font-semibold">2 000€</div>
 
         <a
-          href={payUrl ?? "#"}
-          className="mt-6 inline-flex w-full items-center justify-center rounded-xl bg-white text-black px-5 py-3 font-semibold"
+          href={payUrl || undefined}
+          target={payUrl ? "_blank" : undefined}
+          rel={payUrl ? "noreferrer" : undefined}
+          aria-disabled={!payUrl}
+          className={`mt-6 inline-flex w-full items-center justify-center rounded-xl bg-white text-black px-5 py-3 font-semibold ${
+            !payUrl ? "opacity-50 pointer-events-none" : ""
+          }`}
         >
           Payer maintenant
         </a>
 
         {!payUrl && (
           <p className="mt-3 text-sm text-red-300">
-            NEXT_PUBLIC_STRIPE_PAYMENT_LINK_URL
+            Variable manquante : NEXT_PUBLIC_STRIPE_PAYMENT_LINK
           </p>
         )}
       </div>
