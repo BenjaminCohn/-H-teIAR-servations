@@ -55,7 +55,7 @@ export default function Page() {
             </h1>
             <p className="mt-4 max-w-[62ch] text-base text-slate-300">
               Il collecte les infos (personnes, date, heure, nom, téléphone), confirme, puis enregistre automatiquement
-              dans Google Sheets (ou un planning). Idéal pour réduire les appels et éviter les erreurs.
+              dans Google Calendar/Agenda (ou un planning). Idéal pour réduire les appels et éviter les erreurs.
             </p>
 
             <div className="mt-5 flex flex-wrap gap-2">
@@ -161,7 +161,7 @@ export default function Page() {
             <p className="mt-2 text-sm text-slate-300">Configuration + mise en place + tests + formation.</p>
             <ul className="mt-4 space-y-2 text-sm text-slate-300">
               <li>• Agent configuré (scripts + règles + ton)</li>
-              <li>• Connexion Google Sheets</li>
+              <li>• Connexion Google Calendar</li>
               <li>• Tests + ajustements</li>
               <li>• Guide + formation 30 min</li>
               <li>• Support 30 jours</li>
