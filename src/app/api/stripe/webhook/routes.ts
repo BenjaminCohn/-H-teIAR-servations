@@ -1,27 +1,20 @@
 // src/app/api/stripe/webhook/route.ts
 import Stripe from "stripe";
-import nodemailer from "nodemailer";
+import { Resend } from "resend";
 
-export const runtime = "nodejs"; // important (pas edge)
+export const runtime = "nodejs"; // IMPORTANT (pas edge)
 
+// Stripe SDK
 const stripe = new Stripe(process.env.STRIPE_SECRET_KEY!);
 
-function mailer() {
-  return nodemailer.createTransport({
-    host: process.env.SMTP_HOST,
-    port: Number(process.env.SMTP_PORT || 465),
-    secure: true,
-    auth: {
-      user: process.env.SMTP_USER,
-      pass: process.env.SMTP_PASS,
-    },
-  });
-}
+// Resend SDK
+const resend = new Resend(process.env.RESEND_API_KEY!);
 
 export async function POST(req: Request) {
   const sig = req.headers.get("stripe-signature");
   if (!sig) return new Response("Missing stripe-signature", { status: 400 });
 
+  // ⚠️ Stripe exige le RAW body pour vérifier la signature
   const rawBody = await req.text();
 
   let event: Stripe.Event;
@@ -37,14 +30,18 @@ export async function POST(req: Request) {
     });
   }
 
-  // Event principal : paiement réussi via Payment Link / Checkout
+  // Paiement réussi (Payment Link / Checkout)
   if (event.type === "checkout.session.completed") {
     const session = event.data.object as Stripe.Checkout.Session;
 
     const buyerEmail = session.customer_details?.email ?? "email inconnu";
     const buyerName = session.customer_details?.name ?? "nom inconnu";
-    const amountTotal = session.amount_total ? (session.amount_total / 100).toFixed(2) : "??";
+    const amountTotal = session.amount_total
+      ? (session.amount_total / 100).toFixed(2)
+      : "??";
     const currency = (session.currency ?? "eur").toUpperCase();
+
+    const subject = "✅ Paiement reçu — Installation Agent Réservation";
 
     const text = [
       "✅ Nouveau paiement reçu",
@@ -57,15 +54,15 @@ export async function POST(req: Request) {
     ].join("\n");
 
     try {
-      await mailer().sendMail({
-        from: process.env.SMTP_FROM!,
-        to: process.env.ADMIN_EMAIL!,
-        subject: "✅ Paiement reçu — Installation Agent Réservation",
+      await resend.emails.send({
+        from: process.env.RESEND_FROM ?? "Agent Réservations <onboarding@resend.dev>",
+        to: [process.env.ADMIN_EMAIL!],
+        subject,
         text,
       });
     } catch (e: any) {
-      // Même si l’email rate, on répond 200 à Stripe (sinon Stripe réessaie)
-      console.error("Email send failed:", e?.message || e);
+      // On répond quand même 200 à Stripe, sinon Stripe réessaie en boucle
+      console.error("Resend email failed:", e?.message || e);
     }
   }
 
